@@ -20,8 +20,9 @@ module ActiveStorageSilentLogs
 
     def tssss(env)
       begin
-        Rails.logger.level = Logger::ERROR
-        yield
+        Rails.logger.silence do
+          yield
+        end
       ensure
         Rails.logger.level = level
       end
